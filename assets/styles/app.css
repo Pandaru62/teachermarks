@@ -1,0 +1,31 @@
+* {
+    margin: 0 5px;
+}
+
+header {
+    background-color: aquamarine;
+    color: black;
+    margin-bottom: 10px;
+}
+
+nav ul {
+    padding: 5px 0;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+}
+
+nav li {
+    list-style: none;
+}
+
+nav li a {
+    color: black;
+    font-weight: 700;
+}
+
+
+.class-button:hover {
+    font-size: 1.5em;
+    opacity: 0.5;
+}
