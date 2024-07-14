@@ -5,17 +5,17 @@
 {% block body %}
 
 <form method="post">
-    <div class="container d-flex flex-column justify-content-center">
+    <div class="container-sm d-flex flex-column justify-content-center">
 
-    {% if error %}
-        <div class="alert alert-danger text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+        {% if error %}
+            <div class="alert alert-danger text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
-    {% if app.user %}
-        <div class="alert alert-success text-center" role="alert">
-            Vous êtes connecté en tant que : <b>{{ app.user.userIdentifier }}</b>. <a href="{{ path('app_logout') }}">Se déconnecter</a>
-        </div>
-    {% endif %}
+        {% if app.user %}
+            <div class="alert alert-success text-center" role="alert">
+                Vous êtes connecté en tant que : <b>{{ app.user.userIdentifier }}</b>. <a href="{{ path('app_logout') }}">Se déconnecter</a>
+            </div>
+        {% endif %}
 
 
         <h1 class="text-center text-success">TeacherMarks: L'outil de suivi des compétences</h1>

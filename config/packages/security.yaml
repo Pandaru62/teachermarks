@@ -40,20 +40,26 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: /class, roles: ROLE_USER }
-        - { path: /addstudent, roles: ROLE_USER }
-        - { path: /showstudent, roles: ROLE_USER }
-        - { path: /seeskills, roles: ROLE_USER }
-        - { path: /addskills, roles: ROLE_USER }
-        - { path: /editskills, roles: ROLE_USER }
-        - { path: /voirtests, roles: ROLE_USER }
-        - { path: /addtest, roles: ROLE_USER }
-        - { path: /edittest, roles: ROLE_USER }
         - { path: /voirclasses, roles: ROLE_USER }
         - { path: /editclass/, roles: ROLE_USER }
+        - { path: /deleteclass/, roles: ROLE_USER }
         - { path: /addclass, roles: ROLE_USER }
+        - { path: /archiveclass/, roles: ROLE_USER }
+        - { path: /logout, roles: ROLE_USER }
+        - { path: /class/, roles: ROLE_USER }
+        - { path: /addstudent, roles: ROLE_USER }
+        - { path: /showstudent, roles: ROLE_USER }
         - { path: /deletestudent/, roles: ROLE_USER }
         - { path: /editstudent/, roles: ROLE_USER }
+        - { path: /seeskills/, roles: ROLE_USER }
+        - { path: /addskills/, roles: ROLE_USER }
+        - { path: /editskills/, roles: ROLE_USER }
+        - { path: /seetests, roles: ROLE_USER }
+        - { path: /addtest, roles: ROLE_USER }
+        - { path: /edittest/, roles: ROLE_USER }
+        - { path: /deletetest/, roles: ROLE_USER }
+
+        
 
 when@test:
     security:

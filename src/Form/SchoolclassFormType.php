@@ -7,6 +7,7 @@ use App\Entity\Form;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,27 +23,27 @@ class SchoolclassFormType extends AbstractType
                 ),
                 'label' => 'Nom de la classe : '
             ])
-            ->add('color', TextType::class, [
+            ->add('color', ColorType::class, [
                 'attr' => array(
-                    'class' => 'form-control my-3',
+                    'class' => 'form-control my-3 w-25',
                 ),
                 'label' => 'Couleur associée'
             ])
             ->add('isArchived', CheckboxType::class, [
                 'required' => false,
                 'attr' => array(
-                    'class' => 'form-check-input ms-2',
+                    'class' => 'form-check-input',
                 ),
-                'label' => 'Classe archivée '
+                'label' => 'Classe archivée ',
+                'label_attr' => ['class' => 'form-check-label'],
             ])
             ->add('form', EntityType::class, [
                 'class' => Form::class,
                 'choice_label' => 'name',
                 'attr' => [
-                    'class' => 'my-3  ms-2',
+                    'class' => 'form-control',
                 ],
                 'label' => 'Niveau ',
-                'label_attr' => ['class' => 'form-check-label'],
             ]);
     }
 

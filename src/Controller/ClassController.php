@@ -75,7 +75,7 @@ class ClassController extends AbstractController
     }
 
     
-    #[Route('/addclass', name: 'delete_class')]
+    #[Route('/addclass', name: 'add_class')]
     public function addSchoolClass(Request $request): Response
     {
         $newSchoolclass = new Schoolclass();
@@ -84,9 +84,7 @@ class ClassController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $newSchoolclass = $form->getData();
-            $newSchoolclass->setArchived(0);
 
-    
             $this->em->persist($newSchoolclass);
             $this->em->flush();
     

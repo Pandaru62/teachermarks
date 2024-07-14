@@ -8,6 +8,12 @@
     
 }
 
+/* Fonctionnalités et mises à jour */
+
+.update-list li {
+    list-style: none;
+}
+
 /* Passeport élève */
 
 #student-info ul {
@@ -18,7 +24,7 @@
 .compet1 {
     background-color: #f7d1d5;
     display: inline-block;
-    width: 60%;
+    width: 100%;
     padding: 8px 8px;
     text-transform: uppercase;
     border-radius: 8px;
@@ -27,7 +33,7 @@
 .compet2 {
     background-color: #ff6d6d;
     display: inline-block;
-    width: 60%;
+    width: 100%;
     padding: 8px 8px;
     text-transform:uppercase;
     border-radius: 8px;
@@ -36,7 +42,7 @@
 .compet3 {
     background-color: #b7b3ca;
     display: inline-block;
-    width: 60%;
+    width: 100%;
     padding: 8px 8px;
     text-transform:uppercase;
     border-radius: 8px;
@@ -45,7 +51,7 @@
 .compet4 {
     background-color: #5983b0;
     display: inline-block;
-    width: 60%;
+    width: 100%;
     padding: 8px 8px;
     text-transform:uppercase;
     border-radius: 8px;
@@ -55,7 +61,7 @@
 .compet5 {
     background-color: #dde8cb;
     display: inline-block;
-    width: 60%;
+    width: 100%;
     padding: 8px 8px;
     text-transform:uppercase;
     border-radius: 8px;

@@ -19,16 +19,17 @@
     <body>
         {% block header %}
 
-    <div class="container">
+    <div class="container-fluid">
 
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
 
-            <div class="col-md-3 mb-2 mb-md-0">
+            <div class="col-md-2 mb-2 mb-md-0">
                 <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
                 <span class="bg-success text-light rounded-3 p-1 fw-bolder">TEACHERMARKS</span>
                 </a>
             </div>
 
+            <!-- only appears if user is logged -->
             {% if (app.user) %}
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 ">
                 <li><a href="/" class="nav-link px-2 link-secondary">Accueil</a></li>
@@ -38,7 +39,8 @@
             </ul>
             {% endif %}
 
-            <div class="col-md-3 text-end">
+            <!-- nav adapts to user login -->
+            <div class="col-md-2 text-center text-md-end">
                 <a href="/{{ app.user ? 'logout' : 'login'}}" class="btn btn-outline-success me-2">{{ app.user ? 'Déconnexion' : 'Connexion' }}</a>
             </div>
         </header>
@@ -46,26 +48,49 @@
 
         {% endblock %}
         {% block body %}
-            <div class="container d-flex flex-column justify-content-center">
+        <!-- default body displays app versions and last updates-->
+            <div class="container-fluid d-flex flex-column justify-content-center">
 
                 <h1 class="text-center text-success">TeacherMarks: L'outil de suivi des compétences</h1>
                 <p class="text-center">TeacherMarks a été réalisé pour simplifier la saisie des compétences des enseignants.</p>
 
-                <div class="bg-secondary bg-opacity-25 m-5 p-3 rounded-3">
-                    <h2>Version 1</h2>
-                    <ul>
-                        <li><i class="bi bi-check2-square"></i> Connexion à l'application requise</li>
-                        <li><i class="bi bi-check2-square"></i> Ajout de classes</li>
-                        <li><i class="bi bi-check2-square"></i> Ajout d'évaluations</li>
-                        <li><i class="bi bi-check2-square"></i> Accès aux passeports élèves</li>
-                    </ul>
-                    <h2>Fonctionnalités à venir</h2>
-                    <ul>
-                        <li><i class="bi bi-chat-square-dots"></i> Vérification de l'accessibilité mobile : responsive</li>
-                        <li><i class="bi bi-chat-square-dots"></i> Diagramme de visualisation des progrès des élèves</li>
-                        <li><i class="bi bi-chat-square-dots"></i> Ajout multiple d'élèves dans une classe</li>
-                    </ul>
+                <div class="row">
+                    <div class="col">
+                        <div class="bg-secondary bg-opacity-25 m-5 p-3 rounded-3">
+                            <h2 class="text-center">Nouveautés de l'application</h2>
+                            <h3>Version 1 (actuelle)</h3>
+                            <ul class="update-list">
+                                <li><i class="bi bi-check2-square"></i> Connexion à l'application requise</li>
+                                <li><i class="bi bi-check2-square"></i> Ajout de classes</li>
+                                <li><i class="bi bi-check2-square"></i> Ajout d'évaluations</li>
+                                <li><i class="bi bi-check2-square"></i> Accès aux passeports élèves</li>
+                                <li><i class="bi bi-check2-square"></i> Diagramme de visualisation des progrès des élèves</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="bg-secondary bg-opacity-25 m-5 p-3 rounded-3">
+                    
+                            <h2 class="text-center">Fonctionnalités à venir</h2>
+                            <h3>Dans la prochaine mise à jour (V1.2) <i class="text-success fs-6">Prévue en août 2024</i></h3>
+                            
+                            <ul class="update-list">
+                                <li><i class="bi bi-chat-square-dots"></i> Ajout multiple d'élèves dans une classe</li>
+                                <li><i class="bi bi-chat-square-dots"></i> Meilleure adaptation / responsive aux pages passeport d'élèves</li>
+                                <li><i class="bi bi-chat-square-dots"></i> Fonctionnalité de paramétrage des niveaux de compétences</li>
+                                <li><i class="bi bi-chat-square-dots"></i> Visualisation des évaluations par classe</li>
+                                <li><i class="bi bi-chat-square-dots"></i> Filtres de recherche (élève/évaluation par date ou class)</li>
+                            </ul>
+                            <h3>Dans la version 1.3 <i class="text-success fs-6">Prévue en septembre 2024</i></h3>
+                            
+                            <ul class="update-list">
+                                <li><i class="bi bi-chat-square-dots"></i> Ajout multiple d'élèves dans une classe</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                
+                
             </div>
 
         {% endblock %}
