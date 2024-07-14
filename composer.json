@@ -1,6 +1,14 @@
 {
+    "name": "pandaru62/teachermarks",
+    "description": "app for teachers to add marks and skills",
     "type": "project",
     "license": "proprietary",
+    "authors": [
+        {
+            "name": "Pandaru",
+            "email": "loris.buchelet@gmail.com"
+        }
+    ],
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
