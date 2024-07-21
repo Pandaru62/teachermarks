@@ -1,50 +1,50 @@
 CREATE DATABASE teachermarks;
 
-CREATE TABLE `teachermarks`.`user` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT , 
-    `pseudo` VARCHAR(255) NOT NULL, 
-    `password` VARCHAR(255) NOT NULL,
-    PRIMARY KEY (`id`)
+USE teachermarks;
+
+CREATE TABLE `user` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    `pseudo` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE `teachermarks`.`form` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT , 
-    `name` VARCHAR(255) NOT NULL, 
+CREATE TABLE `form` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY, 
+    `name` VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE `teachermarks`.`schoolclass` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT , 
+CREATE TABLE `schoolclass` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     `name` VARCHAR(255) NOT NULL,
     `color` VARCHAR(255) NOT NULL, 
     `is_archived` BOOLEAN NOT NULL, 
     `form_id` INT(11) NOT NULL,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (`form_id`) REFERENCES `form`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT `fk_class_form` FOREIGN KEY (`form_id`) REFERENCES `form` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE `teachermarks`.`students` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT , 
+CREATE TABLE `students` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     `lastname` VARCHAR(255) NOT NULL,
     `firstname` VARCHAR(255) NOT NULL, 
     `class_id` INT(11) NOT NULL,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (`class_id`) REFERENCES `class`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT `fk_student_class` FOREIGN KEY (`class_id`) REFERENCES `schoolclass` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+
 );
 
-CREATE TABLE `teachermarks`.`test` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT , 
+CREATE TABLE `test` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     `date` DATE NOT NULL,
     `trimester` INT(1) NOT NULL, 
     `description` VARCHAR(255) NOT NULL,
     `scale` INT(11) NOT NULL,
     `coefficient` INT(11) NOT NULL,
     `class_id` INT(11) NOT NULL,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (`class_id`) REFERENCES `class`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT `fk_test_form` FOREIGN KEY (`class_id`) REFERENCES `schoolclass` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+
 );
 
-CREATE TABLE `teachermarks`.`test-student` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT , 
+CREATE TABLE `test-student` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     `mark` INT(11) NOT NULL,
     `skill1` INT(1),
     `skill2` INT(1),
@@ -53,23 +53,24 @@ CREATE TABLE `teachermarks`.`test-student` (
     `skill5` INT(1),
     `student_id` INT(11) NOT NULL, 
     `test_id` INT(11) NOT NULL,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (`student_id`) REFERENCES `student`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`test_id`) REFERENCES `test`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT `fk_student_test` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `fk_test_student` FOREIGN KEY (`test_id`) REFERENCES `test` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+
+
 );
 
 /* Inserting data */
 
 INSERT INTO `form` (`name`) VALUES ('2ND'), ('1G'), ('1HLP'), ('1STMG'), ('BTS');
 
-INSERT INTO `schoolclass` (`name`, `color`, `is_archived`, `form_id`) 
-VALUES ('2D5', 'red', 0, 1),  
-('1G4', 'blue', 0, 2), 
-('1HLP1', 'green', 0, 3), 
-('1STMG2', 'yellow', 0, 4),
-('BTS1', 'pink', 0, 5);
+INSERT INTO `schoolclass` (`id`, `name`, `color`, `is_archived`, `form_id`) 
+VALUES (1, '2D5', 'red', 0, 1),  
+(2, '1G4', 'blue', 0, 2), 
+(3, '1HLP1', 'green', 0, 3), 
+(4, '1STMG2', 'yellow', 0, 4),
+(5, 'BTS1', 'pink', 0, 5);
 
-INSERT INTO `teachermarks`.`student` (`firstname`, `lastname`, `class_id`)
+INSERT INTO `students` (`firstname`, `lastname`, `class_id`)
 VALUES 
 ('John', 'Doe', 1),
 ('Jane', 'Smith', 2),
@@ -91,5 +92,3 @@ VALUES
 ('Paul', 'Martinez', 3),
 ('Quinn', 'Robinson', 4),
 ('Ruby', 'Clark', 5);
-
-
