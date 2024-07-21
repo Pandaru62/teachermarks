@@ -86,19 +86,20 @@
     },
 
     "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        },
-        "post-install-cmd": [
-            "@php copy_env.php",
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@php copy_env.php",
-            "@auto-scripts"
-        ]
+    "auto-scripts": {
+      "cache:clear": [
+        "symfony-cmd",
+        "@php -r 'if (getenv(\"APP_ENV\") !== \"prod\") { exit(1); }'"
+      ],
+      "assets:install %PUBLIC_DIR%": "symfony-cmd"
     },
+    "post-install-cmd": [
+      "@auto-scripts"
+    ],
+    "post-update-cmd": [
+      "@auto-scripts"
+    ]
+  },
 
     "conflict": {
         "symfony/symfony": "*"
